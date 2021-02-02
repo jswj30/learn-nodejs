@@ -1,16 +1,33 @@
 function findAndSaveUser(Users) {
-  Users.findOne({}, (err, user) => {
-    if (err) {
-      return console.error(err);
-    }
-    user.name = "zero";
-    user.save((err) => {
-      if (err) {
-        return console.errror(err);
-      }
-      Users.findOne({ gender: "m" }, (err, user) => {
-        //생략
-      });
+  Users.findOne({})
+    .then((user) => {
+      user.name = "zero";
+      return user.save();
+    })
+    .then((user) => {
+      return Users.findOne({ gender: "m" });
+    })
+    .then((user) => {
+      // 생략
+    })
+    .catch((err) => {
+      console.error(err);
     });
-  });
 }
+
+// function findAndSaveUser(Users) {
+//   Users.findOne({}, (err, user) => {
+//     if (err) {
+//       return console.error(err);
+//     }
+//     user.name = "zero";
+//     user.save((err) => {
+//       if (err) {
+//         return console.errror(err);
+//       }
+//       Users.findOne({ gender: "m" }, (err, user) => {
+//         //생략
+//       });
+//     });
+//   });
+// }
