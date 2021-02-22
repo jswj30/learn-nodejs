@@ -31,3 +31,7 @@ crypto.pbkdf2(pass, salt, 1000000, 128, "sha512", () => {
 crypto.pbkdf2(pass, salt, 1000000, 128, "sha512", () => {
   console.log("7:", Date.now() - start);
 });
+
+crypto.pbkdf2(pass, salt, 1000000, 128, "sha512", () => {
+  console.log("8:", Date.now() - start);
+});
