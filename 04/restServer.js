@@ -14,6 +14,9 @@ http
           const data = await fs.readFile("./about.html");
           res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
           return res.end(data);
+        } else if (req.url === "/users") {
+          res.writeHead(200, { ContentType: "text/plain; charset=utf-8" });
+          return res.end(JSON.stringify(users));
         }
 
         try {
