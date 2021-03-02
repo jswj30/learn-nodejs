@@ -1,6 +1,8 @@
 const http = require("http");
 const fs = require("fs").promises;
 
+const users = {};
+
 http
   .createServer(async (req, res) => {
     try {
@@ -15,7 +17,7 @@ http
           res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
           return res.end(data);
         } else if (req.url === "/users") {
-          res.writeHead(200, { ContentType: "text/plain; charset=utf-8" });
+          res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
           return res.end(JSON.stringify(users));
         }
 
