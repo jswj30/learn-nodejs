@@ -8,6 +8,8 @@ const multer = require("multer");
 const fs = require("fs");
 
 dotenv.config();
+const indexRouter = require("./routes");
+const userRouter = require("./routes/user");
 const app = express();
 app.set("port", process.env.PORT || 3000);
 
@@ -28,6 +30,13 @@ app.use(
     name: "session-cookie",
   })
 );
+
+app.use("/", indexRouter);
+app.use("/user", userRouter);
+
+app.use((req, res, next) => {
+  res.status(404).send("Not Found");
+});
 
 try {
   fs.readdirSync("uploads");
