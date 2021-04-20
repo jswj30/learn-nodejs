@@ -1,11 +1,10 @@
-// 사용자 이름을 눌렀을 때 댓글 로딩
+// 사용자 이름 눌렀을 때 댓글 로딩
 document.querySelectorAll("#user-list tr").forEach((el) => {
   el.addEventListener("click", function () {
     const id = el.querySelector("td").textContent;
     getComment(id);
   });
 });
-
 // 사용자 로딩
 async function getUser() {
   try {
@@ -38,7 +37,6 @@ async function getUser() {
     console.error(err);
   }
 }
-
 // 댓글 로딩
 async function getComment(id) {
   try {
@@ -49,7 +47,7 @@ async function getComment(id) {
     comments.map(function (comment) {
       // 로우 셀 추가
       const row = document.createElement("tr");
-      const td = document.createElement("td");
+      let td = document.createElement("td");
       td.textContent = comment.id;
       row.appendChild(td);
       td = document.createElement("td");
@@ -61,7 +59,7 @@ async function getComment(id) {
       const edit = document.createElement("button");
       edit.textContent = "수정";
       edit.addEventListener("click", async () => {
-        // 클릭 수정 시
+        // 수정 클릭 시
         const newComment = prompt("바꿀 내용을 입력하세요");
         if (!newComment) {
           return alert("내용을 반드시 입력하셔야 합니다");
@@ -97,7 +95,6 @@ async function getComment(id) {
     console.error(err);
   }
 }
-
 // 사용자 등록 시
 document.getElementById("user-form").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -120,7 +117,6 @@ document.getElementById("user-form").addEventListener("submit", async (e) => {
   e.target.age.value = "";
   e.target.married.checked = false;
 });
-
 // 댓글 등록 시
 document
   .getElementById("comment-form")
@@ -129,7 +125,7 @@ document
     const id = e.target.userid.value;
     const comment = e.target.comment.value;
     if (!id) {
-      return alert("아이디를 립력하세요");
+      return alert("아이디를 입력하세요");
     }
     if (!comment) {
       return alert("댓글을 입력하세요");

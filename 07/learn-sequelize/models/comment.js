@@ -1,5 +1,4 @@
-const { Sequelize } = require("sequelize");
-const sequelize = require("sequelize");
+const Sequelize = require("sequelize");
 
 module.exports = class Comment extends Sequelize.Model {
   static init(sequelize) {
@@ -26,6 +25,7 @@ module.exports = class Comment extends Sequelize.Model {
       }
     );
   }
+
   static associate(db) {
     db.Comment.belongsTo(db.User, { foreignKey: "commenter", targetKey: "id" });
   }
